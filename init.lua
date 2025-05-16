@@ -25,10 +25,10 @@ else
 	--  For more options, you can see `:help option-list`
 
 	-- Make line numbers default
-	vim.o.number = true
+	-- vim.o.number = true
 	-- You can also add relative line numbers, to help with jumping.
 	--  Experiment for yourself to see if you like it!
-	-- vim.o.relativenumber = true
+	vim.o.relativenumber = true
 
 	vim.o.mouse = "a"
 
@@ -110,8 +110,10 @@ else
 	vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 	vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
-	vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Move half page up and center" })
-	vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Move half page down and center" })
+	vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Move half page up and center current line" })
+	vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Move half page down and center current line" })
+	vim.keymap.set("n", "n", "nzz", { desc = "Jump to next match and center current line" })
+	vim.keymap.set("n", "N", "Nzz", { desc = "Jump to previous match and center current line" })
 
 	-- [[ Basic Autocommands ]]
 	--  See `:help lua-guide-autocommands`
@@ -797,20 +799,16 @@ else
 				-- - sr)'  - [S]urround [R]eplace [)] [']
 				require("mini.surround").setup()
 
-				-- Simple and easy statusline.
-				--  You could remove this setup call if you don't like it,
-				--  and try some other statusline plugin
-				local statusline = require("mini.statusline")
-				-- set use_icons to true if you have a Nerd Font
-				statusline.setup({ use_icons = vim.g.have_nerd_font })
+				-- local statusline = require("mini.statusline")
+				-- statusline.setup({ use_icons = vim.g.have_nerd_font })
 
 				-- You can configure sections in the statusline by overriding their
 				-- default behavior. For example, here we set the section for
 				-- cursor location to LINE:COLUMN
 				---@diagnostic disable-next-line: duplicate-set-field
-				statusline.section_location = function()
-					return "%2l:%-2v"
-				end
+				-- statusline.section_location = function()
+				-- return "%2l:%-2v"
+				-- end
 
 				-- ... and there is more!
 				--  Check out: https://github.com/echasnovski/mini.nvim
@@ -853,6 +851,25 @@ else
 			--    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
 			--    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
 			--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+		},
+
+		"ThePrimeagen/vim-be-good",
+
+		{
+			"nvim-lualine/lualine.nvim",
+			dependencies = { "nvim-tree/nvim-web-devicons" },
+			config = function()
+				require("lualine").setup({
+					sections = {
+						lualine_a = { "mode" },
+						lualine_b = {},
+						lualine_c = { "filename" },
+						lualine_x = { "branch", "diff", "diagnostics" },
+						lualine_y = {},
+						lualine_z = { "location" },
+					},
+				})
+			end,
 		},
 
 		-- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
