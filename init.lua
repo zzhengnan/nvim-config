@@ -1,3 +1,13 @@
+-- Highlight when yanking (copying) text
+--  See `:help vim.hl.on_yank()`
+vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlight when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	callback = function()
+		vim.hl.on_yank()
+	end,
+})
+
 if vim.g.vscode then
 	print("For VS Code")
 else
@@ -100,18 +110,11 @@ else
 	vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 	vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
+	vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Move half page up and center" })
+	vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Move half page down and center" })
+
 	-- [[ Basic Autocommands ]]
 	--  See `:help lua-guide-autocommands`
-
-	-- Highlight when yanking (copying) text
-	--  See `:help vim.hl.on_yank()`
-	vim.api.nvim_create_autocmd("TextYankPost", {
-		desc = "Highlight when yanking (copying) text",
-		group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-		callback = function()
-			vim.hl.on_yank()
-		end,
-	})
 
 	-- [[ Install `lazy.nvim` plugin manager ]]
 	--    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
