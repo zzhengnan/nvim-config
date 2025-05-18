@@ -144,6 +144,11 @@ else
 
 		"ThePrimeagen/vim-be-good",
 
+		{
+			"linrongbin16/gitlinker.nvim",
+			opts = {},
+		},
+
 		-- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
 		-- See `:help gitsigns` to understand what the configuration keys do
 		{ -- Adds git related signs to the gutter, as well as utilities for managing changes
