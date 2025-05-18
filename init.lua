@@ -134,7 +134,13 @@ else
 
 	-- [[ Configure and install plugins ]]
 	require("lazy").setup({
-		spec = { { import = "plugins" } },
+		require("plugins.appearance"),
+		require("plugins.blink"),
+		require("plugins.conform"),
+		require("plugins.lsp"),
+		require("plugins.telescope"),
+		require("plugins.treesitter"),
+		require("plugins.whichkey"),
 
 		"ThePrimeagen/vim-be-good",
 
@@ -162,7 +168,7 @@ else
 				--  - va)  - [V]isually select [A]round [)]paren
 				--  - yinq - [Y]ank [I]nside [N]ext [Q]uote
 				--  - ci'  - [C]hange [I]nside [']quote
-				require("mini.ai").setup({ n_lines = 500 })
+				-- require("mini.ai").setup({ n_lines = 500 })
 
 				-- Add/delete/replace surroundings (brackets, quotes, etc.)
 				--

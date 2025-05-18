@@ -10,7 +10,11 @@ return {
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
-			options = { theme = "vscode" },
+			options = {
+				theme = "vscode",
+				component_separators = { left = "", right = "" },
+				section_separators = { left = "", right = "" },
+			},
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = {},
