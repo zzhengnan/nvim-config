@@ -15,6 +15,15 @@ else
 	vim.g.mapleader = " "
 	vim.g.maplocalleader = " "
 
+	-- https://stackoverflow.com/a/1878984
+	vim.opt.tabstop = 4 -- The width of a TAB is set to 4.
+	-- Still it is a \t. It is just that
+	-- Vim will interpret it to be having
+	-- a width of 4.
+	vim.opt.shiftwidth = 4 -- Indents will have a width of 4
+	vim.opt.softtabstop = 4 -- Sets the number of columns for a TAB
+	vim.opt.expandtab = true -- Expand TABs to spaces
+
 	vim.g.have_nerd_font = true
 
 	-- See `:help vim.o`
@@ -128,8 +137,6 @@ else
 		spec = { { import = "plugins" } },
 
 		"ThePrimeagen/vim-be-good",
-
-		"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 
 		-- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
 		-- See `:help gitsigns` to understand what the configuration keys do

@@ -1,4 +1,5 @@
-return { -- Useful plugin to show you pending keybinds.
+return {
+	-- Useful plugin to show you pending keybinds.
 
 	-- NOTE: Plugins can also be configured to run Lua code when they are loaded.
 	--
