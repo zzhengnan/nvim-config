@@ -137,32 +137,13 @@ else
 		require("plugins.appearance"),
 		require("plugins.blink"),
 		require("plugins.conform"),
+		require("plugins.git"),
 		require("plugins.lsp"),
-		require("plugins.telescope"),
+		require("plugins.navigation"),
 		require("plugins.treesitter"),
 		require("plugins.whichkey"),
 
 		"ThePrimeagen/vim-be-good",
-
-		{
-			"linrongbin16/gitlinker.nvim",
-			opts = {},
-		},
-
-		-- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
-		-- See `:help gitsigns` to understand what the configuration keys do
-		{ -- Adds git related signs to the gutter, as well as utilities for managing changes
-			"lewis6991/gitsigns.nvim",
-			opts = {
-				signs = {
-					add = { text = "+" },
-					change = { text = "~" },
-					delete = { text = "_" },
-					topdelete = { text = "‾" },
-					changedelete = { text = "~" },
-				},
-			},
-		},
 
 		{ -- Collection of various small independent plugins/modules
 			"echasnovski/mini.nvim",
