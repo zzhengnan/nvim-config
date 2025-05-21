@@ -16,12 +16,9 @@ else
 	vim.g.maplocalleader = " "
 
 	-- https://stackoverflow.com/a/1878984
-	vim.opt.tabstop = 4 -- The width of a TAB is set to 4.
-	-- Still it is a \t. It is just that
-	-- Vim will interpret it to be having
-	-- a width of 4.
-	vim.opt.shiftwidth = 4 -- Indents will have a width of 4
-	vim.opt.softtabstop = 4 -- Sets the number of columns for a TAB
+	vim.opt.tabstop = 4 -- TAB width. Still it is a \t, it's just that Vim will interpret it as having a width of 4
+	vim.opt.shiftwidth = 4 -- Indent width
+	vim.opt.softtabstop = 4 -- Number of columns for a TAB
 	vim.opt.expandtab = true -- Expand TABs to spaces
 
 	vim.g.have_nerd_font = true
@@ -116,6 +113,13 @@ else
 	vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Move half page down and center current line" })
 	vim.keymap.set("n", "n", "nzz", { desc = "Jump to next match and center current line" })
 	vim.keymap.set("n", "N", "Nzz", { desc = "Jump to previous match and center current line" })
+
+	-- https://www.reddit.com/r/neovim/comments/u221as/comment/i5y9zy2/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+	vim.api.nvim_create_user_command("CopyFilePath", function()
+		local path = vim.fn.expand("%:p")
+		vim.fn.setreg("+", path)
+		vim.notify("Copied '" .. path .. "' to the clipboard") -- How's this different from print?
+	end, {})
 
 	-- [[ Install `lazy.nvim` plugin manager ]]
 	--    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
