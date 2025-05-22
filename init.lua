@@ -118,7 +118,7 @@ else
 
 	-- https://www.reddit.com/r/neovim/comments/u221as/comment/i5y9zy2/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 	vim.api.nvim_create_user_command("CopyFilePath", function()
-		local path = vim.fn.expand("%:p")
+		local path = vim.fn.expand("%:p") -- :h expand
 		vim.fn.setreg("+", path)
 		vim.notify("Copied '" .. path .. "' to the clipboard") -- How's this different from print?
 	end, {})
