@@ -110,7 +110,9 @@ else
 	vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 	vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Move half page up and center current line" })
+	vim.keymap.set("n", "<C-b>", "<C-b>zz", { desc = "Move whole page up and center current line" })
 	vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Move half page down and center current line" })
+	vim.keymap.set("n", "<C-f>", "<C-f>zz", { desc = "Move whole page down and center current line" })
 	vim.keymap.set("n", "n", "nzz", { desc = "Jump to next match and center current line" })
 	vim.keymap.set("n", "N", "Nzz", { desc = "Jump to previous match and center current line" })
 
