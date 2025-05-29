@@ -11,6 +11,7 @@ return {
 				"c",
 				"diff",
 				"html",
+				"gitcommit",
 				"lua",
 				"luadoc",
 				"markdown",
