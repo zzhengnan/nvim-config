@@ -1,5 +1,14 @@
 return {
-	"tpope/vim-fugitive",
+	{
+		"tpope/vim-fugitive",
+		keys = {
+			{
+				"<leader>gl",
+				":G log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' | only<CR>",
+				desc = "log",
+			},
+		},
+	},
 
 	{
 		"linrongbin16/gitlinker.nvim",
