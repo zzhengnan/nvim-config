@@ -15,12 +15,6 @@ else
 	vim.g.mapleader = " "
 	vim.g.maplocalleader = " "
 
-	-- https://stackoverflow.com/a/1878984
-	vim.opt.tabstop = 4 -- TAB width. Still it is a \t, it's just that Vim will interpret it as having a width of 4
-	vim.opt.shiftwidth = 4 -- Indent width
-	vim.opt.softtabstop = 4 -- Number of columns for a TAB
-	vim.opt.expandtab = true -- Expand TABs to spaces
-
 	vim.g.have_nerd_font = true
 
 	-- See `:help vim.o`
@@ -149,7 +143,7 @@ else
 		require("plugins.treesitter"),
 		require("plugins.whichkey"),
 
-		"ThePrimeagen/vim-be-good",
+		"tpope/vim-sleuth",
 
 		-- { -- Collection of various small independent plugins/modules
 		-- 	"echasnovski/mini.nvim",
