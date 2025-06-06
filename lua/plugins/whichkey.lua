@@ -62,7 +62,6 @@ return {
 		spec = {
 			{ "<leader>c", group = "[c]ode", mode = { "n", "x" } },
 			{ "<leader>d", group = "[d]ocument" },
-			{ "<leader>g", group = "[g]it" },
 			{ "<leader>r", group = "[r]ename" },
 			{ "<leader>s", group = "[s]earch" },
 			{ "<leader>w", group = "[w]orkspace" },

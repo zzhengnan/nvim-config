@@ -140,6 +140,7 @@ else
 		require("plugins.git"),
 		require("plugins.lsp"),
 		require("plugins.navigation"),
+		require("plugins.toggleterm"),
 		require("plugins.treesitter"),
 		require("plugins.whichkey"),
 
