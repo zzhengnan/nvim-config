@@ -134,37 +134,7 @@ else
 
 	-- [[ Configure and install plugins ]]
 	require("lazy").setup({
-		require("plugins.appearance"),
-		require("plugins.blink"),
-		require("plugins.conform"),
-		require("plugins.git"),
-		require("plugins.lsp"),
-		require("plugins.navigation"),
-		require("plugins.toggleterm"),
-		require("plugins.treesitter"),
-		require("plugins.whichkey"),
-
 		"tpope/vim-sleuth",
-
-		-- { -- Collection of various small independent plugins/modules
-		-- 	"echasnovski/mini.nvim",
-		-- 	config = function()
-		-- 		-- Better Around/Inside textobjects
-		-- 		--
-		-- 		-- Examples:
-		-- 		--  - va)  - [V]isually select [A]round [)]paren
-		-- 		--  - yinq - [Y]ank [I]nside [N]ext [Q]uote
-		-- 		--  - ci'  - [C]hange [I]nside [']quote
-		-- 		-- require("mini.ai").setup({ n_lines = 500 })
-		--
-		-- 		-- Add/delete/replace surroundings (brackets, quotes, etc.)
-		-- 		--
-		-- 		-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-		-- 		-- - sd'   - [S]urround [D]elete [']quotes
-		-- 		-- - sr)'  - [S]urround [R]eplace [)] [']
-		-- 		require("mini.surround").setup()
-		-- 	end,
-		-- },
 
 		-- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
 		--
@@ -180,7 +150,7 @@ else
 		--    This is the easiest way to modularize your config.
 		--
 		--  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-		-- { import = 'custom.plugins' },
+		{ import = "plugins" },
 		--
 		-- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
 		-- Or use telescope!
