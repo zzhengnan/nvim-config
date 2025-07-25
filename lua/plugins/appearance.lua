@@ -18,10 +18,15 @@ return {
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = {},
-				lualine_c = { {
-					"filename",
-					path = 1,
-				} },
+				lualine_c = {
+					{
+						"filename",
+						-- 0: Just file name
+						-- 1: Relative path
+						-- 2: Absolute path
+						path = 0,
+					},
+				},
 				lualine_x = { "branch", "diff", "diagnostics" },
 				lualine_y = { "location" },
 				lualine_z = {},
