@@ -110,6 +110,11 @@ else
 	vim.keymap.set("n", "n", "nzz", { desc = "Jump to next match and center current line" })
 	vim.keymap.set("n", "N", "Nzz", { desc = "Jump to previous match and center current line" })
 
+	vim.o.tabstop = 4 -- TAB looks like 4 spaces
+	vim.o.expandtab = true -- Pressing TAB inserts spaces
+	vim.o.softtabstop = 4 -- # of spaces inserted for each TAB
+	vim.o.shiftwidth = 4 -- # of spaces inserted when indenting
+
 	-- https://www.reddit.com/r/neovim/comments/u221as/comment/i5y9zy2/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 	vim.api.nvim_create_user_command("CopyFilePath", function()
 		local path = vim.fn.expand("%:p") -- :h expand
@@ -134,10 +139,6 @@ else
 
 	-- [[ Configure and install plugins ]]
 	require("lazy").setup({
-		"tpope/vim-sleuth",
-
-		-- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
-		--
 		--  Here are some example plugins that I've included in the Kickstart repository.
 		--  Uncomment any of the lines below to enable them (you will need to restart nvim).
 		--
