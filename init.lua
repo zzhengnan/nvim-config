@@ -114,6 +114,7 @@ else
 	vim.o.expandtab = true -- Pressing TAB inserts spaces
 	vim.o.softtabstop = 4 -- # of spaces inserted for each TAB
 	vim.o.shiftwidth = 4 -- # of spaces inserted when indenting
+	vim.o.wrap = false
 
 	-- https://www.reddit.com/r/neovim/comments/u221as/comment/i5y9zy2/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 	vim.api.nvim_create_user_command("CopyFilePath", function()
