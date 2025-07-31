@@ -1,17 +1,27 @@
 return {
+	-- {
+	-- 	"Mofiqul/vscode.nvim",
+	-- 	priority = 100,
+	-- 	config = function()
+	-- 		vim.cmd.colorscheme("vscode")
+	-- 	end,
+	-- },
+
 	{
-		"Mofiqul/vscode.nvim",
-		priority = 100,
+		"webhooked/kanso.nvim",
+		lazy = false,
+		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme("vscode")
+			vim.cmd.colorscheme("kanso-ink")
 		end,
 	},
+
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
 			options = {
-				theme = "vscode",
+				-- theme = "vscode",
 				component_separators = { left = "", right = "" },
 				section_separators = { left = "", right = "" },
 			},
@@ -24,7 +34,9 @@ return {
 						-- 0: Just file name
 						-- 1: Relative path
 						-- 2: Absolute path
-						path = 0,
+						-- 3: Absolute path, with ~ as home directory
+						-- 4: File name and parent dir, with ~ as home directory
+						path = 4,
 					},
 				},
 				lualine_x = { "branch", "diff", "diagnostics" },
