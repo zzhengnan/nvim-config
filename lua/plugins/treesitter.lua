@@ -46,6 +46,7 @@ return {
 		config = function()
 			-- Add grey underline to context section
 			vim.cmd("highlight TreesitterContextBottom gui=underline guisp=Grey")
+			vim.cmd("TSContext enable")
 		end,
 	},
 }
