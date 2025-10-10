@@ -211,7 +211,9 @@ return {
 		lazy = false,
 		config = function()
 			vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
-			require("oil").setup()
+			require("oil").setup({
+				skip_confirm_for_simple_edits = true,
+			})
 		end,
 	},
 }
