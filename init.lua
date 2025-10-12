@@ -9,7 +9,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 if vim.g.vscode then
-	print("For VS Code")
+	-- https://github.com/vscode-neovim/vscode-neovim/issues/298#issuecomment-1636762241
+	vim.opt.clipboard:append("unnamedplus")
 else
 	--  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 	vim.g.mapleader = " "
