@@ -1,37 +1,11 @@
 return {
 	{
-		"zenbones-theme/zenbones.nvim",
-		dependencies = "rktjmp/lush.nvim",
-		lazy = false,
-		priority = 1000,
+		"Mofiqul/vscode.nvim",
+		priority = 100,
 		config = function()
-			vim.cmd.colorscheme("tokyobones")
+			vim.cmd.colorscheme("vscode")
 		end,
 	},
-
-	{
-		"folke/tokyonight.nvim",
-		lazy = false,
-		priority = 1000,
-		opts = {},
-	},
-
-	-- {
-	-- 	"Mofiqul/vscode.nvim",
-	-- 	priority = 100,
-	-- 	config = function()
-	-- 		vim.cmd.colorscheme("vscode")
-	-- 	end,
-	-- },
-
-	-- {
-	-- 	"webhooked/kanso.nvim",
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- 	config = function()
-	-- 		vim.cmd.colorscheme("kanso-ink")
-	-- 	end,
-	-- },
 
 	{
 		"nvim-lualine/lualine.nvim",
