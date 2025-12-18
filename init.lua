@@ -111,20 +111,6 @@ else
 	vim.keymap.set("n", "n", "nzz", { desc = "Jump to next match and center current line" })
 	vim.keymap.set("n", "N", "Nzz", { desc = "Jump to previous match and center current line" })
 
-	-- <leader>g to start Lazygit in terminal buffer; Ctrl-c to quit
-	-- Create auto-command to always start terminal buffer in insert mode; otherwise when Lazygit buffer is toggled open again,
-	-- it enters normal mode and I have to manually enter insert mode
-	vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter" }, {
-		pattern = { "*" },
-		callback = function()
-			if vim.opt.buftype:get() == "terminal" then
-				vim.cmd(":startinsert")
-			end
-		end,
-	})
-	vim.keymap.set("n", "<leader>g", "<cmd>te lazygit<cr>", { desc = "LazyGit" })
-	vim.keymap.set("t", "<C-c>", "<cmd>q<cr>", { desc = "Quit LazyGit" })
-
 	vim.o.tabstop = 4 -- TAB looks like 4 spaces
 	vim.o.expandtab = true -- Pressing TAB inserts spaces
 	vim.o.softtabstop = 4 -- # of spaces inserted for each TAB
@@ -132,7 +118,7 @@ else
 	vim.o.wrap = false
 
 	-- https://www.reddit.com/r/neovim/comments/u221as/comment/i5y9zy2/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
-	vim.api.nvim_create_user_command("CopyFilePath", function()
+	vim.api.nvim_create_user_command("CopyPath", function()
 		local path = vim.fn.expand("%:p") -- :h expand
 		vim.fn.setreg("+", path)
 		vim.notify("Copied '" .. path .. "' to the clipboard") -- How's this different from print?

@@ -1,13 +1,5 @@
 return {
 	{
-		"Mofiqul/vscode.nvim",
-		priority = 100,
-		config = function()
-			vim.cmd.colorscheme("vscode")
-		end,
-	},
-
-	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
@@ -35,11 +27,5 @@ return {
 				lualine_z = {},
 			},
 		},
-	},
-	{
-		"folke/todo-comments.nvim",
-		event = "VimEnter",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = { signs = false },
 	},
 }
