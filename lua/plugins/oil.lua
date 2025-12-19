@@ -13,6 +13,9 @@ return {
 			vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
 			require("oil").setup({
 				skip_confirm_for_simple_edits = true,
+				view_options = {
+					show_hidden = true,
+				},
 			})
 		end,
 	},

@@ -9,27 +9,25 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 if vim.g.vscode then
+	-- Yank to system clipboard when in VS Code
 	-- https://github.com/vscode-neovim/vscode-neovim/issues/298#issuecomment-1636762241
 	vim.opt.clipboard:append("unnamedplus")
 else
-	--  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+	-- Must happen before plugins are loaded (otherwise wrong leader will be used)
 	vim.g.mapleader = " "
 	vim.g.maplocalleader = " "
 
 	vim.g.have_nerd_font = true
 
-	-- See `:help vim.o`
-	--  For more options, you can see `:help option-list`
-
+	-- See `:help vim.o`. For more options, see `:help option-list`
 	vim.o.number = true
 	vim.o.relativenumber = true
-
 	vim.o.mouse = "a"
 
 	-- Don't show the mode, since it's already in the status line
 	vim.o.showmode = false
 
-	-- Sync clipboard between OS and Neovim.
+	-- Sync clipboard between OS and Neovim
 	vim.schedule(function()
 		vim.o.clipboard = "unnamedplus"
 	end)
@@ -85,7 +83,7 @@ else
 	--  See `:help vim.keymap.set()`
 
 	-- Clear highlights on search when pressing <Esc> in normal mode
-	vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+	vim.keymap.set("n", "<Esc>", "<CMD>nohlsearch<CR>")
 
 	-- Diagnostic keymaps
 	vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "[q]uickfix list" })
