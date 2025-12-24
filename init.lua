@@ -168,3 +168,11 @@ else
 	-- The line beneath this is called `modeline`. See `:help modeline`
 	-- vim: ts=2 sts=2 sw=2 et
 end
+
+-- Run command automatically when CSV is opened
+vim.api.nvim_create_autocmd("BufRead", {
+	pattern = "*.csv",
+	callback = function()
+		vim.cmd("CsvViewEnable display_mode=border")
+	end,
+})
