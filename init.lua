@@ -1,3 +1,6 @@
+-- :source % to run current file
+-- :lua after visual selection to run just the selection
+
 -- Highlight when yanking text
 --  See `:help vim.hl.on_yank()`
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -84,6 +87,8 @@ else
 
 	-- Clear highlights on search when pressing <Esc> in normal mode
 	vim.keymap.set("n", "<Esc>", "<CMD>nohlsearch<CR>")
+
+	vim.keymap.set("n", "<Backspace>", "<CMD>wa<CR>")
 
 	-- Diagnostic keymaps
 	vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "[q]uickfix list" })
@@ -176,3 +181,26 @@ vim.api.nvim_create_autocmd("BufRead", {
 		vim.cmd("CsvViewEnable display_mode=border")
 	end,
 })
+
+vim.api.nvim_create_user_command("OpenRemote", function()
+	local ssh_url = table.concat(vim.fn.systemlist("git remote get-url origin"), "\n")
+	local branch_name = table.concat(vim.fn.systemlist("git branch --show-current"), "\n") -- git rev-parse --abbrev-ref HEAD
+	local file_name = vim.fn.expand("%")
+	local line_number = vim.fn.line(".")
+	local base_url = string.gsub(ssh_url, "git@(.+):(.+).git$", "https://%1/%2") -- TODO: Support https (only works for ssh now)
+	local full_url = base_url .. "/blob/" .. branch_name .. "/" .. file_name .. "#L" .. line_number
+	local escaped_url = vim.fn.shellescape(full_url) -- Protects spaces, quotes, etc.
+
+	local cmd
+	if vim.fn.has("macunix") == 1 then
+		cmd = "open"
+	elseif vim.fn.has("win32") == 1 then
+		-- cmd “start” requires an empty title string before the URL
+		cmd = 'cmd /c start ""'
+	else
+		cmd = "xdg-open"
+	end
+	cmd = cmd .. " " .. escaped_url
+
+	vim.fn.jobstart(cmd)
+end, {})
