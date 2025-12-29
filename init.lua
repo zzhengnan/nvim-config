@@ -1,5 +1,5 @@
 -- :source % to run current file
--- :lua after visual selection to run just the selection
+-- :lua with visual selection to run just the selection
 
 -- Highlight when yanking text
 --  See `:help vim.hl.on_yank()`
@@ -120,13 +120,6 @@ else
 	vim.o.shiftwidth = 4 -- # of spaces inserted when indenting
 	vim.o.wrap = false
 
-	-- https://www.reddit.com/r/neovim/comments/u221as/comment/i5y9zy2/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
-	vim.api.nvim_create_user_command("CopyPath", function()
-		local path = vim.fn.expand("%:p") -- :h expand
-		vim.fn.setreg("+", path)
-		vim.notify("Copied '" .. path .. "' to the clipboard") -- How's this different from print?
-	end, {})
-
 	-- [[ Install `lazy.nvim` plugin manager ]]
 	--    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -182,9 +175,15 @@ vim.api.nvim_create_autocmd("BufRead", {
 	end,
 })
 
+vim.api.nvim_create_user_command("CopyPath", function()
+	local path = vim.fn.expand("%")
+	vim.fn.setreg("+", path)
+	vim.notify("Copied '" .. path .. "' to system clipboard")
+end, {})
+
 vim.api.nvim_create_user_command("OpenRemote", function()
 	local ssh_url = table.concat(vim.fn.systemlist("git remote get-url origin"), "\n")
-	local branch_name = table.concat(vim.fn.systemlist("git branch --show-current"), "\n") -- git rev-parse --abbrev-ref HEAD
+	local branch_name = table.concat(vim.fn.systemlist("git branch --show-current"), "\n") -- Alternatively, git rev-parse --abbrev-ref HEAD
 	local file_name = vim.fn.expand("%")
 	local line_number = vim.fn.line(".")
 	local base_url = string.gsub(ssh_url, "git@(.+):(.+).git$", "https://%1/%2") -- TODO: Support https (only works for ssh now)
@@ -203,4 +202,5 @@ vim.api.nvim_create_user_command("OpenRemote", function()
 	cmd = cmd .. " " .. escaped_url
 
 	vim.fn.jobstart(cmd)
+	vim.notify("Opened " .. escaped_url .. " in browser")
 end, {})
