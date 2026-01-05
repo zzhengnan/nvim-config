@@ -22,6 +22,11 @@ else
 
 	vim.g.have_nerd_font = true
 
+	if vim.fn.has("win32") then
+		-- Use cmd as the shell so that external calls to git can be found. This is a workaround and ideally should be removed
+		vim.opt.shell = "cmd.exe"
+	end
+
 	-- See `:help vim.o`. For more options, see `:help option-list`
 	vim.o.number = true
 	vim.o.relativenumber = true
@@ -176,14 +181,14 @@ vim.api.nvim_create_autocmd("BufRead", {
 })
 
 vim.api.nvim_create_user_command("CopyPath", function()
-	local path = vim.fn.expand("%")
+	local path = vim.fn.expand("%").gsub("\\", "/")
 	vim.fn.setreg("+", path)
 	vim.notify("Copied '" .. path .. "' to system clipboard")
 end, {})
 
 vim.api.nvim_create_user_command("OpenRemote", function()
 	local ssh_url = table.concat(vim.fn.systemlist("git remote get-url origin"), "\n")
-	local branch_name = table.concat(vim.fn.systemlist("git branch --show-current"), "\n") -- Alternatively, git rev-parse --abbrev-ref HEAD
+	local branch_name = table.concat(vim.fn.systemlist("git branch --show-current"), "\n")
 	local file_name = vim.fn.expand("%")
 	local line_number = vim.fn.line(".")
 	local base_url = string.gsub(ssh_url, "git@(.+):(.+).git$", "https://%1/%2") -- TODO: Support https (only works for ssh now)
