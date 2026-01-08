@@ -181,7 +181,7 @@ vim.api.nvim_create_autocmd("BufRead", {
 })
 
 vim.api.nvim_create_user_command("CopyPath", function()
-	local path = vim.fn.expand("%").gsub("\\", "/")
+	local path = vim.fn.expand("%"):gsub("\\", "/")
 	vim.fn.setreg("+", path)
 	vim.notify("Copied '" .. path .. "' to system clipboard")
 end, {})
@@ -189,7 +189,7 @@ end, {})
 vim.api.nvim_create_user_command("OpenRemote", function()
 	local ssh_url = table.concat(vim.fn.systemlist("git remote get-url origin"), "\n")
 	local branch_name = table.concat(vim.fn.systemlist("git branch --show-current"), "\n")
-	local file_name = vim.fn.expand("%")
+	local file_name = vim.fn.expand("%"):gsub("\\", "/")
 	local line_number = vim.fn.line(".")
 	local base_url = string.gsub(ssh_url, "git@(.+):(.+).git$", "https://%1/%2") -- TODO: Support https (only works for ssh now)
 	local full_url = base_url .. "/blob/" .. branch_name .. "/" .. file_name .. "#L" .. line_number
