@@ -189,9 +189,9 @@ end, {})
 vim.api.nvim_create_user_command("OpenRemote", function()
 	local ssh_url = table.concat(vim.fn.systemlist("git remote get-url origin"), "\n")
 	local branch_name = table.concat(vim.fn.systemlist("git branch --show-current"), "\n")
-	local file_name = vim.fn.expand("%"):gsub("\\", "/")
+	local file_name = vim.fn.expand("%:."):gsub("\\", "/") -- :. to get relative path to current directory
 	local line_number = vim.fn.line(".")
-	local base_url = string.gsub(ssh_url, "git@(.+):(.+).git$", "https://%1/%2") -- TODO: Support https (only works for ssh now)
+	local base_url = string.gsub(ssh_url, "git@(.+):(.+).git$", "https://%1/%2") -- Only works for SSH
 	local full_url = base_url .. "/blob/" .. branch_name .. "/" .. file_name .. "#L" .. line_number
 	local escaped_url = vim.fn.shellescape(full_url) -- Protects spaces, quotes, etc.
 
