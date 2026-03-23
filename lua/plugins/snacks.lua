@@ -4,7 +4,7 @@ return {
 	lazy = false,
 	---@type snacks.Config
 	opts = {
-		-- bigfile = { enabled = true },
+		bigfile = { enabled = false },
 		dashboard = {
 			enabled = true,
 			preset = {
@@ -18,19 +18,25 @@ return {
 			},
 		},
 		explorer = { enabled = true },
-		-- indent = { enabled = true },
-		-- input = { enabled = true },
+		indent = { enabled = false },
+		input = { enabled = false },
 		picker = { enabled = true },
-		-- notifier = { enabled = true },
-		-- quickfile = { enabled = true },
-		-- scope = { enabled = true },
-		-- scroll = { enabled = true },
-		-- statuscolumn = { enabled = true },
-		-- words = { enabled = true },
+		notifier = { enabled = false },
+		quickfile = { enabled = false },
+		scope = { enabled = false },
+		scroll = { enabled = false },
+		statuscolumn = { enabled = false },
+		words = { enabled = false },
 	},
-	config = function()
+	config = function(_, opts)
+		require("snacks").setup(opts)
+
 		vim.keymap.set("n", "\\", function()
 			Snacks.explorer()
 		end, { desc = "Explorer" })
+
+		vim.keymap.set("n", "<leader>l", function()
+			Snacks.lazygit({})
+		end, { desc = "Lazygit" })
 	end,
 }
