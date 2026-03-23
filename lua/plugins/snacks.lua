@@ -30,13 +30,73 @@ return {
 	},
 	config = function(_, opts)
 		require("snacks").setup(opts)
-
-		vim.keymap.set("n", "\\", function()
-			Snacks.explorer()
-		end, { desc = "Explorer" })
-
-		vim.keymap.set("n", "<leader>l", function()
-			Snacks.lazygit({})
-		end, { desc = "Lazygit" })
+		local keymaps = {
+			{
+				"\\",
+				function()
+					Snacks.explorer()
+				end,
+				"Explorer",
+			},
+			{
+				"<leader>l",
+				function()
+					Snacks.lazygit({})
+				end,
+				"Lazygit",
+			},
+			{
+				"<leader>op",
+				function()
+					Snacks.picker.projects()
+				end,
+				"Projects",
+			},
+			{
+				"<leader>s.",
+				function()
+					Snacks.picker.recent()
+				end,
+				"Recent files",
+			},
+			{
+				"<leader>sg",
+				function()
+					Snacks.picker.grep()
+				end,
+				"Grep",
+			},
+			{
+				"<leader>sw",
+				function()
+					Snacks.picker.grep_word()
+				end,
+				"Grep current word",
+			},
+			{
+				"<leader>sr",
+				function()
+					Snacks.picker.resume()
+				end,
+				"Resume",
+			},
+			{
+				"<leader>sh",
+				function()
+					Snacks.picker.help()
+				end,
+				"Help",
+			},
+			{
+				"<leader>sk",
+				function()
+					Snacks.picker.keymaps()
+				end,
+				"Keymaps",
+			},
+		}
+		for _, map in ipairs(keymaps) do
+			vim.keymap.set("n", map[1], map[2], { desc = map[3] })
+		end
 	end,
 }
