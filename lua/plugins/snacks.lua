@@ -94,6 +94,20 @@ return {
 				end,
 				"Keymaps",
 			},
+			{
+				"<leader>ss",
+				function()
+					Snacks.picker.lsp_symbols()
+				end,
+				"LSP symbols",
+			},
+			{
+				"<leader>sS",
+				function()
+					Snacks.picker.lsp_workspace_symbols()
+				end,
+				"LSP workspace symbols",
+			},
 		}
 		for _, map in ipairs(keymaps) do
 			vim.keymap.set("n", map[1], map[2], { desc = map[3] })
