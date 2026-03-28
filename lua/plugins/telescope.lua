@@ -118,9 +118,9 @@ return {
 
 			-- See `:help telescope.builtin`
 			local builtin = require("telescope.builtin")
-			vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "[f]iles" })
-			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[d]iagnostics" })
-			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[<leader>] find existing buffers" })
+			vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "Files" })
+			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "Diagnostics" })
+			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "Buffers" })
 
 			-- Slightly advanced example of overriding default behavior and theme
 			vim.keymap.set("n", "<leader>/", function()
@@ -129,7 +129,7 @@ return {
 					winblend = 10,
 					previewer = false,
 				}))
-			end, { desc = "[/] fuzzily search in current buffer" })
+			end, { desc = "Fuzzily search in current buffer" })
 
 			-- It's also possible to pass additional configuration options.
 			--  See `:help telescope.builtin.live_grep()` for information about particular keys
