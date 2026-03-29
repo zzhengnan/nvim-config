@@ -23,7 +23,7 @@ else
 
 	vim.g.have_nerd_font = true
 
-	if vim.fn.has("win32") then
+	if vim.fn.has("win32") == 1 then
 		-- Use cmd as the shell so that external calls to git can be found. This is a workaround and ideally should be removed
 		vim.opt.shell = "cmd.exe"
 	end
@@ -210,3 +210,4 @@ vim.api.nvim_create_user_command("OpenRemote", function()
 	vim.fn.jobstart(cmd)
 	vim.notify("Opened " .. escaped_url .. " in browser")
 end, {})
+vim.keymap.set("n", "<leader>gho", "<CMD>OpenRemote<CR>", { desc = "Open in remote", silent = true })
