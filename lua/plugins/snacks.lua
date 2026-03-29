@@ -39,6 +39,20 @@ return {
 				"Explorer",
 			},
 			{
+				"<leader>f",
+				function()
+					Snacks.picker.files()
+				end,
+				"Files",
+			},
+			{
+				"<leader><space>",
+				function()
+					Snacks.picker.buffers()
+				end,
+				"Buffers",
+			},
+			{
 				"<leader>l",
 				function()
 					Snacks.lazygit({})
@@ -107,6 +121,21 @@ return {
 					Snacks.picker.lsp_workspace_symbols()
 				end,
 				"LSP workspace symbols",
+			},
+			{
+				'<leader>s"',
+				function()
+					Snacks.picker.registers()
+				end,
+				desc = "Registers",
+			},
+
+			{
+				"<leader>su",
+				function()
+					Snacks.picker.undo()
+				end,
+				desc = "Undo history",
 			},
 		}
 		for _, map in ipairs(keymaps) do

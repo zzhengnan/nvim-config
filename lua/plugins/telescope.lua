@@ -118,9 +118,9 @@ return {
 
 			-- See `:help telescope.builtin`
 			local builtin = require("telescope.builtin")
-			vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "Files" })
+			-- vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "Files" })
 			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "Diagnostics" })
-			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "Buffers" })
+			-- vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "Buffers" })
 
 			-- Slightly advanced example of overriding default behavior and theme
 			vim.keymap.set("n", "<leader>/", function()
