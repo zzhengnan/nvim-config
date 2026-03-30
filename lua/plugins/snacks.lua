@@ -137,7 +137,15 @@ return {
 				end,
 				desc = "Undo history",
 			},
+			{
+				"<leader>uc",
+				function()
+					Snacks.picker.colorschemes()
+				end,
+				desc = "Color scheme",
+			},
 		}
+
 		for _, map in ipairs(keymaps) do
 			vim.keymap.set("n", map[1], map[2], { desc = map[3] })
 		end

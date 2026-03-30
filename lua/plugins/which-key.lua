@@ -53,6 +53,7 @@ return {
 			{ "<leader>s", group = "Search" },
 			-- 	{ "<leader>t", group = "[t]oggle" },
 			{ "<leader>h", group = "Hunk", mode = { "n", "v" } },
+			{ "<leader>u", group = "UI" },
 		},
 	},
 }
