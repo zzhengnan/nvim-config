@@ -113,12 +113,12 @@ else
 	vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 	vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
-	-- vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Move half page up and center current line" })
-	-- vim.keymap.set("n", "<C-b>", "<C-b>zz", { desc = "Move whole page up and center current line" })
-	-- vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Move half page down and center current line" })
-	-- vim.keymap.set("n", "<C-f>", "<C-f>zz", { desc = "Move whole page down and center current line" })
-	-- vim.keymap.set("n", "n", "nzz", { desc = "Jump to next match and center current line" })
-	-- vim.keymap.set("n", "N", "Nzz", { desc = "Jump to previous match and center current line" })
+	vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Move half page up and center current line" })
+	vim.keymap.set("n", "<C-b>", "<C-b>zz", { desc = "Move whole page up and center current line" })
+	vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Move half page down and center current line" })
+	vim.keymap.set("n", "<C-f>", "<C-f>zz", { desc = "Move whole page down and center current line" })
+	vim.keymap.set("n", "n", "nzz", { desc = "Jump to next match and center current line" })
+	vim.keymap.set("n", "N", "Nzz", { desc = "Jump to previous match and center current line" })
 
 	vim.o.tabstop = 4 -- TAB looks like 4 spaces
 	vim.o.expandtab = true -- Pressing TAB inserts spaces
@@ -143,30 +143,7 @@ else
 
 	-- [[ Configure and install plugins ]]
 	require("lazy").setup({
-		--  Here are some example plugins that I've included in the Kickstart repository.
-		--  Uncomment any of the lines below to enable them (you will need to restart nvim).
-		--
-		-- require 'kickstart.plugins.debug',
-		-- require 'kickstart.plugins.indent_line',
-		-- require 'kickstart.plugins.lint',
-		-- require 'kickstart.plugins.autopairs',
-
-		-- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-		--    This is the easiest way to modularize your config.
-		--
-		--  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
 		{ import = "plugins" },
-		--
-		-- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
-		-- Or use telescope!
-		-- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
-		-- you can continue same window with `<space>sr` which resumes last telescope search
-	}, {
-		ui = {
-			-- This assumes you are using a Nerd Font: set icons to an empty table which will use the
-			-- default lazy.nvim defined Nerd Font icons
-			icons = {},
-		},
 	})
 
 	-- The line beneath this is called `modeline`. See `:help modeline`

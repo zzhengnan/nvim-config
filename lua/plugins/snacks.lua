@@ -53,7 +53,7 @@ return {
 				"Buffers",
 			},
 			{
-				"<leader>l",
+				"<leader>z",
 				function()
 					Snacks.lazygit({})
 				end,
