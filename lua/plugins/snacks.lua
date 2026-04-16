@@ -144,6 +144,13 @@ return {
 				end,
 				desc = "Color scheme",
 			},
+			{
+				"<leader>gf",
+				function()
+					Snacks.picker.git_log_file()
+				end,
+				desc = "History of current file",
+			},
 		}
 
 		for _, map in ipairs(keymaps) do

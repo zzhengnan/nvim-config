@@ -57,5 +57,16 @@ return {
 				-- end, { desc = "View all changed hunks across repo" })
 			end,
 		},
+		config = function(_, opts)
+			require("gitsigns").setup(opts)
+
+			-- 'q' to quit blame window
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "gitsigns-blame",
+				callback = function(ev)
+					vim.keymap.set("n", "q", "<cmd>q<cr>", { buffer = ev.buf })
+				end,
+			})
+		end,
 	},
 }
