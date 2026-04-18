@@ -3,6 +3,7 @@ return {
 		"hat0uma/csvview.nvim",
 		---@module "csvview"
 		---@type CsvView.Options
+		ft = { "csv" },
 		opts = {
 			parser = { comments = { "#", "//" } },
 			keymaps = {
@@ -19,6 +20,9 @@ return {
 				jump_prev_row = { "<S-Enter>", mode = { "n", "v" } },
 			},
 		},
-		cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
+		config = function(_, opts)
+			require("csvview").setup(opts)
+			vim.cmd("CsvViewEnable display_mode=border")
+		end,
 	},
 }

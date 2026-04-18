@@ -1,7 +1,7 @@
 return {
 	{
 		"Mofiqul/vscode.nvim",
-		priority = 100,
+		-- priority = 100,
 		config = function()
 			require("vscode").setup({
 				transparent = true,
