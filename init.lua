@@ -1,16 +1,7 @@
 -- :source % to run current file
 -- :lua with visual selection to run just the selection
 
--- Highlight when yanking text
---  See `:help vim.hl.on_yank()`
-vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
-		vim.hl.on_yank()
-	end,
-})
-
+require("autocmds")
 require("user_commands")
 
 if vim.g.vscode then
