@@ -60,6 +60,11 @@ return {
 		config = function(_, opts)
 			require("gitsigns").setup(opts)
 
+			-- Match gutter color to VS Code
+			vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = "#487E02" })
+			vim.api.nvim_set_hl(0, "GitSignsChange", { fg = "#1B81A8" })
+			vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = "#94151B" })
+
 			-- 'q' to quit blame window
 			vim.api.nvim_create_autocmd("FileType", {
 				pattern = "gitsigns-blame",

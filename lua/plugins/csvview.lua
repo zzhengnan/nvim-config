@@ -22,7 +22,12 @@ return {
 		},
 		config = function(_, opts)
 			require("csvview").setup(opts)
-			vim.cmd("CsvViewEnable display_mode=border")
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "csv",
+				callback = function(ev)
+					vim.cmd("CsvViewEnable display_mode=border")
+				end,
+			})
 		end,
 	},
 }
