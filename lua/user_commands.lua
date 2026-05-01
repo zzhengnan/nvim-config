@@ -23,7 +23,7 @@ vim.api.nvim_create_user_command("OpenRemote", function()
 end, {})
 
 vim.api.nvim_create_user_command("CopyPath", function()
-	local path = vim.fn.expand("%"):gsub("\\", "/")
+	local path = vim.fn.expand("%:."):gsub("\\", "/")
 	vim.fn.setreg("+", path)
 	vim.notify("Copied '" .. path .. "' to system clipboard")
 end, {})

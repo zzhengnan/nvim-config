@@ -127,7 +127,7 @@ return {
 				function()
 					Snacks.picker.registers()
 				end,
-				desc = "Registers",
+				"Registers",
 			},
 
 			{
@@ -135,21 +135,21 @@ return {
 				function()
 					Snacks.picker.undo()
 				end,
-				desc = "Undo history",
+				"Undo history",
 			},
 			{
 				"<leader>uc",
 				function()
 					Snacks.picker.colorschemes()
 				end,
-				desc = "Color scheme",
+				"Color scheme",
 			},
 			{
 				"<leader>gf",
 				function()
 					Snacks.picker.git_log_file()
 				end,
-				desc = "History of current file",
+				"History of current file",
 			},
 		}
 
