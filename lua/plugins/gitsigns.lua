@@ -65,11 +65,12 @@ return {
 			vim.api.nvim_set_hl(0, "GitSignsChange", { fg = "#1B81A8" })
 			vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = "#94151B" })
 
-			-- 'q' to quit blame window
+			-- 'q' to quit, 'o' to open commit on remote
 			vim.api.nvim_create_autocmd("FileType", {
 				pattern = "gitsigns-blame",
 				callback = function(ev)
 					vim.keymap.set("n", "q", "<cmd>q<cr>", { buffer = ev.buf })
+					vim.keymap.set("n", "o", "<cmd>OpenCommit<cr>", { buffer = ev.buf, desc = "Open commit on remote" })
 				end,
 			})
 		end,
