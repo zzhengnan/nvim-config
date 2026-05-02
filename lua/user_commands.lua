@@ -1,25 +1,29 @@
-vim.api.nvim_create_user_command("OpenRemote", function()
+local function get_remote_base_url()
 	local ssh_url = table.concat(vim.fn.systemlist("git remote get-url origin"), "\n")
-	local branch_name = table.concat(vim.fn.systemlist("git branch --show-current"), "\n")
-	local file_name = vim.fn.expand("%:."):gsub("\\", "/") -- :. to get relative path to current directory
-	local line_number = vim.fn.line(".")
-	local base_url = string.gsub(ssh_url, "git@(.+):(.+).git$", "https://%1/%2") -- Only works for SSH
-	local full_url = base_url .. "/blob/" .. branch_name .. "/" .. file_name .. "#L" .. line_number
-	local escaped_url = vim.fn.shellescape(full_url) -- Protects spaces, quotes, etc.
+	return string.gsub(ssh_url, "git@(.+):(.+).git$", "https://%1/%2") -- Only works for SSH
+end
 
+local function open_in_browser(url)
+	local escaped_url = vim.fn.shellescape(url) -- Protects spaces, quotes, etc.
 	local cmd
 	if vim.fn.has("macunix") == 1 then
 		cmd = "open"
 	elseif vim.fn.has("win32") == 1 then
-		-- cmd “start” requires an empty title string before the URL
+		-- cmd "start" requires an empty title string before the URL
 		cmd = 'cmd /c start ""'
 	else
 		cmd = "xdg-open"
 	end
-	cmd = cmd .. " " .. escaped_url
-
-	vim.fn.jobstart(cmd)
+	vim.fn.jobstart(cmd .. " " .. escaped_url)
 	vim.notify("Opened " .. escaped_url .. " in browser")
+end
+
+vim.api.nvim_create_user_command("OpenRemote", function()
+	local branch_name = table.concat(vim.fn.systemlist("git branch --show-current"), "\n")
+	local file_name = vim.fn.expand("%:."):gsub("\\", "/") -- :. to get relative path to current directory
+	local line_number = vim.fn.line(".")
+	local full_url = get_remote_base_url() .. "/blob/" .. branch_name .. "/" .. file_name .. "#L" .. line_number
+	open_in_browser(full_url)
 end, {})
 
 vim.api.nvim_create_user_command("OpenCommit", function()
@@ -38,21 +42,8 @@ vim.api.nvim_create_user_command("OpenCommit", function()
 		vim.notify("No commit hash found on current line", vim.log.levels.WARN)
 		return
 	end
-	local ssh_url = table.concat(vim.fn.systemlist("git remote get-url origin"), "\n")
-	local base_url = string.gsub(ssh_url, "git@(.+):(.+).git$", "https://%1/%2")
-	local full_url = base_url .. "/commit/" .. hash
-	local escaped_url = vim.fn.shellescape(full_url)
-
-	local cmd
-	if vim.fn.has("macunix") == 1 then
-		cmd = "open"
-	elseif vim.fn.has("win32") == 1 then
-		cmd = 'cmd /c start ""'
-	else
-		cmd = "xdg-open"
-	end
-	vim.fn.jobstart(cmd .. " " .. escaped_url)
-	vim.notify("Opened " .. escaped_url .. " in browser")
+	local full_url = get_remote_base_url() .. "/commit/" .. hash
+	open_in_browser(full_url)
 end, {})
 
 vim.api.nvim_create_user_command("CopyPath", function(opts)
