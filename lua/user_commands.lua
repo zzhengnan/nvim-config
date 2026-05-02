@@ -22,8 +22,13 @@ vim.api.nvim_create_user_command("OpenRemote", function()
 	vim.notify("Opened " .. escaped_url .. " in browser")
 end, {})
 
-vim.api.nvim_create_user_command("CopyPath", function()
-	local path = vim.fn.expand("%:."):gsub("\\", "/")
+vim.api.nvim_create_user_command("CopyPath", function(opts)
+	local use_abs_path = opts.args == "abs"
+	local modifier = use_abs_path and "%:p" or "%:."
+	local path = vim.fn.expand(modifier)
+	if not use_abs_path then
+		path = path:gsub("\\", "/")
+	end
 	vim.fn.setreg("+", path)
 	vim.notify("Copied '" .. path .. "' to system clipboard")
-end, {})
+end, { nargs = "?" })
